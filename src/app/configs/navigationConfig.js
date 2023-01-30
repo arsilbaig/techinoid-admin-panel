@@ -102,12 +102,12 @@ const navigationConfig = [
             url: 'apps/projects',
             end: true,
           },
-          {
-            id: 'projects-new-project',
-            title: 'New Project',
-            type: 'item',
-            url: 'apps/projects/new',
-          }
+          // {
+          //   id: 'projects-new-project',
+          //   title: 'New Project',
+          //   type: 'item',
+          //   url: 'apps/projects/new',
+          // }
         ]
       },
       {
@@ -130,12 +130,12 @@ const navigationConfig = [
           //   type: 'item',
           //   url: 'apps/e-commerce/products/1/a-walk-amongst-friends-canvas-print',
           // },
-          {
-            id: 'blogs-new-blog',
-            title: 'New Blog',
-            type: 'item',
-            url: 'apps/blogs/new',
-          },
+          // {
+          //   id: 'blogs-new-blog',
+          //   title: 'New Blog',
+          //   type: 'item',
+          //   url: 'apps/blogs/new',
+          // },
           // {
           //   id: 'e-commerce-orders',
           //   title: 'Orders',
