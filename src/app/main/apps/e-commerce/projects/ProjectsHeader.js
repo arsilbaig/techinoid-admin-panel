@@ -52,7 +52,7 @@ function ProjectsHeader(props) {
           <Button
             className=""
             component={Link}
-            to="/apps/e-commerce/products/new"
+            to="/apps/projects/new"
             variant="contained"
             color="secondary"
             startIcon={<FuseSvgIcon>heroicons-outline:plus</FuseSvgIcon>}

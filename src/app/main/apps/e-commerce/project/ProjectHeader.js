@@ -9,7 +9,7 @@ import _ from '@lodash';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { removeProject, saveProject } from '../store/projectSlice';
 
-function ProjectHeader(props) {
+function ProjectHeader({ baseImage, setBaseImage }) {
   const dispatch = useDispatch();
   const methods = useFormContext();
   const { formState, watch, getValues } = methods;
@@ -21,7 +21,13 @@ function ProjectHeader(props) {
   const navigate = useNavigate();
 
   function handleSaveProduct() {
-    dispatch(saveProject(getValues()));
+    const valuesObj = getValues();
+    const dataObj = {
+      title: valuesObj.title,
+      description: valuesObj.description,
+      image: baseImage
+    }
+    dispatch(saveBlog(dataObj));
   }
 
   function handleRemoveProduct() {
@@ -105,7 +111,7 @@ function ProjectHeader(props) {
           className="whitespace-nowrap mx-4"
           variant="contained"
           color="secondary"
-          disabled={_.isEmpty(dirtyFields) || !isValid}
+          disabled={_.isEmpty(dirtyFields) || !(isValid && baseImage)}
           onClick={handleSaveProduct}
         >
           Save
