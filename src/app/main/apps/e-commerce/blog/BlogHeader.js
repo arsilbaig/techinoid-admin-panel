@@ -9,7 +9,7 @@ import _ from '@lodash';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { removeBlog, saveBlog } from '../store/blogSlice';
 
-function BlogHeader(props) {
+function BlogHeader({ baseImage, setBaseImage }) {
   const dispatch = useDispatch();
   const methods = useFormContext();
   const { formState, watch, getValues } = methods;
@@ -21,7 +21,13 @@ function BlogHeader(props) {
   const navigate = useNavigate();
 
   function handleSaveProduct() {
-    dispatch(saveBlog(getValues()));
+    const valuesObj = getValues();
+    const dataObj = {
+      title: valuesObj.title,
+      description: valuesObj.description,
+      image: baseImage
+    }
+    dispatch(saveBlog(dataObj));
   }
 
   function handleRemoveProduct() {
@@ -105,7 +111,7 @@ function BlogHeader(props) {
           className="whitespace-nowrap mx-4"
           variant="contained"
           color="secondary"
-          disabled={_.isEmpty(dirtyFields) || !isValid}
+          disabled={_.isEmpty(dirtyFields) || !(isValid && baseImage)}
           onClick={handleSaveProduct}
         >
           Save

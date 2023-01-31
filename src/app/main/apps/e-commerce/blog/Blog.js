@@ -28,10 +28,13 @@ import ShippingTab from './tabs/ShippingTab';
  * Form Validation Schema
  */
 const schema = yup.object().shape({
-  name: yup
+  title: yup
     .string()
-    .required('You must enter a product name')
+    .required('You must enter a title')
     .min(5, 'The product name must be at least 5 characters'),
+  description: yup
+    .string()
+    .required('You should give some description')
 });
 
 function Blog(props) {
@@ -42,6 +45,7 @@ function Blog(props) {
   const routeParams = useParams();
   const [tabValue, setTabValue] = useState(0);
   const [noProduct, setNoProduct] = useState(false);
+  const [baseImage, setBaseImage] = useState("");
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {},
@@ -143,11 +147,11 @@ function Blog(props) {
   return (
     <FormProvider {...methods}>
       <FusePageCarded
-        header={<BlogHeader />}
+        header={<BlogHeader baseImage={baseImage} setBaseImage={setBaseImage} />}
         content={
           <>
             <div className="p-16 sm:p-24 max-w-3xl">
-              <BasicInfoTab />
+              <BasicInfoTab baseImage={baseImage} setBaseImage={setBaseImage} />
             </div>
           </>
         }
