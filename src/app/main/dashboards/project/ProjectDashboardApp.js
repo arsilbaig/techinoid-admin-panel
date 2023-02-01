@@ -23,15 +23,15 @@ const Root = styled(FusePageSimple)(({ theme }) => ({
 
 function ProjectDashboardApp(props) {
   const dispatch = useDispatch();
-  const widgets = useSelector(selectWidgets);
+  // const widgets = useSelector(selectWidgets);
 
-  useEffect(() => {
-    dispatch(getWidgets());
-  }, [dispatch]);
+  // useEffect(() => {
+    // dispatch(getWidgets());
+  // }, [dispatch]);
 
-  if (_.isEmpty(widgets)) {
-    return null;
-  }
+  // if (_.isEmpty(widgets)) {
+  //   return null;
+  // }
 
   return (
     <Root
@@ -45,4 +45,4 @@ function ProjectDashboardApp(props) {
   );
 }
 
-export default withReducer('projectDashboardApp', reducer)(ProjectDashboardApp);
+export default ProjectDashboardApp;
