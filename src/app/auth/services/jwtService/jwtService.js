@@ -7,7 +7,7 @@ import jwtServiceConfig from './jwtServiceConfig';
 
 class JwtService extends FuseUtils.EventEmitter {
   init() {
-    this.setInterceptors();
+    // this.setInterceptors();
     this.handleAuthentication();
   }
 
@@ -18,7 +18,7 @@ class JwtService extends FuseUtils.EventEmitter {
       },
       (err) => {
         return new Promise((resolve, reject) => {
-          if (err.response.status === 401 && err.config && !err.config.__isRetryRequest) {
+          if (err) {
             // if you ever get an unauthorized response, logout the user
             this.emit('onAutoLogout', 'Invalid access_token');
             this.setSession(null);
@@ -62,19 +62,24 @@ class JwtService extends FuseUtils.EventEmitter {
   };
 
   signInWithEmailAndPassword = (email, password) => {
+    const data = {
+      email: email,
+      password: password
+    }
     return new Promise((resolve, reject) => {
-      axios
-        .get(jwtServiceConfig.signIn, {
-          data: {
-            email,
-            password,
-          },
-        })
+      axios.post('http://localhost:3001/login', data)
         .then((response) => {
+          let arr = []
+          arr.push(response.data.role)
+          const obj = {
+            role: arr,
+            data: response.data.user
+          }
+          console.log(response.data, "response")
           if (response.data.user) {
-            this.setSession(response.data.access_token);
-            resolve(response.data.user);
-            this.emit('onLogin', response.data.user);
+            this.setSession(response.data.token);
+            resolve(obj);
+            this.emit('onLogin', obj);
           } else {
             reject(response.data.error);
           }
@@ -85,15 +90,22 @@ class JwtService extends FuseUtils.EventEmitter {
   signInWithToken = () => {
     return new Promise((resolve, reject) => {
       axios
-        .get(jwtServiceConfig.accessToken, {
-          data: {
+        .post('http://localhost:3001/refreshToken', {
+          headers: {
             access_token: this.getAccessToken(),
           },
         })
         .then((response) => {
+          let arr = []
+          arr.push(response.data.role)
+          const obj = {
+            role: arr,
+            data: response.data.user
+          }
+          debugger
           if (response.data.user) {
-            this.setSession(response.data.access_token);
-            resolve(response.data.user);
+            this.setSession(response.data.token);
+            resolve(obj);
           } else {
             this.logout();
             reject(new Error('Failed to login with token.'));
