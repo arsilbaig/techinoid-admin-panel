@@ -75,7 +75,6 @@ class JwtService extends FuseUtils.EventEmitter {
             role: arr,
             data: response.data.user
           }
-          console.log(response.data, "response")
           if (response.data.user) {
             this.setSession(response.data.token);
             resolve(obj);
@@ -102,7 +101,6 @@ class JwtService extends FuseUtils.EventEmitter {
             role: arr,
             data: response.data.user
           }
-          debugger
           if (response.data.user) {
             this.setSession(response.data.token);
             resolve(obj);

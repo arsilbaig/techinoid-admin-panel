@@ -34,9 +34,7 @@ function BasicInfoTab({ baseImage, setBaseImage }) {
 
   return (
     <div>
-      <Typography
-        className="text-grey-600 font-medium text-md mt-24"
-      >
+      <Typography className="text-grey-600 font-medium text-md mt-24">
         Upload photo<span style={{ color: "red" }}>*</span>
       </Typography>
       <div className="mb-20">
@@ -75,6 +73,9 @@ function BasicInfoTab({ baseImage, setBaseImage }) {
         </div>
       </div>
 
+      <Typography className="text-grey-600 font-medium text-md mt-24">
+        Title<span style={{ color: "red" }}>*</span>
+      </Typography>
       <Controller
         name="title"
         control={control}
@@ -85,7 +86,6 @@ function BasicInfoTab({ baseImage, setBaseImage }) {
             error={!!errors.title}
             required
             helperText={errors?.title?.message}
-            label="Title"
             autoFocus
             id="title"
             variant="outlined"
@@ -94,6 +94,9 @@ function BasicInfoTab({ baseImage, setBaseImage }) {
         )}
       />
 
+      <Typography className="text-grey-600 font-medium text-md mt-24">
+        Description<span style={{ color: "red" }}>*</span>
+      </Typography>
       <Controller
         name="description"
         control={control}
@@ -105,7 +108,6 @@ function BasicInfoTab({ baseImage, setBaseImage }) {
             required
             helperText={errors?.description?.message}
             id="description"
-            label="Description"
             type="text"
             multiline
             rows={5}

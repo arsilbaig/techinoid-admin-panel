@@ -3,17 +3,24 @@ import axios from 'axios';
 import FuseUtils from '@fuse/utils';
 
 export const getBlog = createAsyncThunk('dashboardBlogs/blog/getBlog', async (blogId) => {
-  const response = await axios.get(`/api/ecommerce/products/${blogId}`);
-  const data = await response.data;
+  const response = await axios.get(`http://localhost:3001/blogs/${blogId}`);
+  const data = await response.data.blogs;
 
-  return data === undefined ? null : data;
+  const obj = {
+    id: data.id,
+    title: data.title,
+    description: data.content,
+    image: data.image
+  }
+
+  return obj === undefined ? null : obj;
 });
 
 export const removeBlog = createAsyncThunk(
   'dashboardBlogs/blog/removeBlog',
   async (val, { dispatch, getState }) => {
     const { id } = getState().dashboardBlogs.blog;
-    await axios.delete(`/api/ecommerce/products/${id}`);
+    await axios.delete(`http://localhost:3001/blogs/delete/${id}`);
     return id;
   }
 );
@@ -21,9 +28,23 @@ export const removeBlog = createAsyncThunk(
 export const saveBlog = createAsyncThunk(
   'dashboardBlogs/blog/saveBlog',
   async (blogData, { dispatch, getState }) => {
-    const { id } = getState().dashboardBlogs;
 
-    const response = await axios.put(`/api/ecommerce/products/${id}`, blogData);
+    const response = await axios.post('http://localhost:3001/blogs/create', blogData);
+
+    const data = await response.data;
+
+    return data;
+  }
+);
+
+export const updateBlog = createAsyncThunk(
+  'dashboardBlogs/blog/updateBlog',
+  async (blogData, { dispatch, getState }) => {
+    debugger
+    const { id } = getState().dashboardBlogs.blog;
+
+    const response = await axios.put(`http://localhost:3001/blogs/update/${id}`, blogData);
+    debugger
 
     const data = await response.data;
 
@@ -66,6 +87,7 @@ const blogSlice = createSlice({
   extraReducers: {
     [getBlog.fulfilled]: (state, action) => action.payload,
     [saveBlog.fulfilled]: (state, action) => action.payload,
+    [updateBlog.fulfilled]: (state, action) => null,
     [removeBlog.fulfilled]: (state, action) => null,
   },
 });

@@ -88,6 +88,7 @@ function Blog(props) {
     /**
      * Reset the form on product state changes
      */
+    setBaseImage(product?.image)
     reset(product);
   }, [product, reset]);
 
@@ -119,7 +120,7 @@ function Blog(props) {
         className="flex flex-col flex-1 items-center justify-center h-full"
       >
         <Typography color="text.secondary" variant="h5">
-          There is no such product!
+          There is no such blog!
         </Typography>
         <Button
           className="mt-24"
@@ -128,7 +129,7 @@ function Blog(props) {
           to="/apps/blogs"
           color="inherit"
         >
-          Go to Products Page
+          Go to Blogs Page
         </Button>
       </motion.div>
     );
@@ -137,12 +138,12 @@ function Blog(props) {
   /**
    * Wait while product data is loading and form is setted
    */
-  if (
-    _.isEmpty(form) ||
-    (product && routeParams.blogId !== product.id && routeParams.blogId !== 'new')
-  ) {
-    return <FuseLoading />;
-  }
+  // if (
+  //   _.isEmpty(form) ||
+  //   (product && routeParams.blogId !== product.id && routeParams.blogId !== 'new')
+  // ) {
+  //   return <FuseLoading />;
+  // }
 
   return (
     <FormProvider {...methods}>

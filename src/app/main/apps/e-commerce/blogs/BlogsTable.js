@@ -17,10 +17,12 @@ import FuseLoading from '@fuse/core/FuseLoading';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { getBlogs, selectBlogs, selectBlogsSearchText } from '../store/blogsSlice';
 import BlogsTableHead from './BlogsTableHead';
+import moment from 'moment';
 
 function BlogsTable(props) {
   const dispatch = useDispatch();
   const blogs = useSelector(selectBlogs);
+  console.log(blogs, "blogs")
   const searchText = useSelector(selectBlogsSearchText);
 
   const [loading, setLoading] = useState(true);
@@ -75,7 +77,7 @@ function BlogsTable(props) {
   }
 
   function handleClick(item) {
-    props.navigate(`/apps/blogs/${item.id}/${item.handle}`);
+    props.navigate(`/apps/blogs/${item.id}`);
   }
 
   function handleCheck(event, id) {
@@ -127,6 +129,8 @@ function BlogsTable(props) {
       </motion.div>
     );
   }
+
+  console.log(data, "data")
 
   return (
     <div className="w-full flex flex-col min-h-full">
@@ -186,56 +190,25 @@ function BlogsTable(props) {
                       scope="row"
                       padding="none"
                     >
-                      {n.images.length > 0 && n.featuredImageId ? (
-                        <img
-                          className="w-full block rounded"
-                          src={_.find(n.images, { id: n.featuredImageId }).url}
-                          alt={n.name}
-                        />
-                      ) : (
-                        <img
-                          className="w-full block rounded"
-                          src="assets/images/apps/ecommerce/product-image-placeholder.png"
-                          alt={n.name}
-                        />
-                      )}
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16" component="th" scope="row">
-                      {n.name}
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
-                      {n.categories.join(', ')}
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      <span>$</span>
-                      {n.priceTaxIncl}
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      {n.quantity}
-                      <i
-                        className={clsx(
-                          'inline-block w-8 h-8 rounded mx-8',
-                          n.quantity <= 5 && 'bg-red',
-                          n.quantity > 5 && n.quantity <= 25 && 'bg-orange',
-                          n.quantity > 25 && 'bg-green'
-                        )}
+                      <img
+                        className="w-full block rounded"
+                        src={n.image}
+                        alt={n.title}
                       />
                     </TableCell>
 
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      {n.active ? (
-                        <FuseSvgIcon className="text-green" size={20}>
-                          heroicons-outline:check-circle
-                        </FuseSvgIcon>
-                      ) : (
-                        <FuseSvgIcon className="text-red" size={20}>
-                          heroicons-outline:minus-circle
-                        </FuseSvgIcon>
-                      )}
+                    <TableCell className="p-4 md:p-16" component="th" scope="row">
+                      {n.title}
+                    </TableCell>
+
+                    <TableCell className="p-4 md:p-16" component="th" scope="row">
+                      <Typography className=''>
+                        {n.content}
+                      </Typography>
+                    </TableCell>
+
+                    <TableCell className="p-4 md:p-16" component="th" scope="row">
+                      {moment(n.publishedAt).format('lll')}
                     </TableCell>
                   </TableRow>
                 );

@@ -4,13 +4,15 @@ import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import { useFormContext } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import _ from '@lodash';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
-import { removeBlog, saveBlog } from '../store/blogSlice';
+import { removeBlog, saveBlog, updateBlog } from '../store/blogSlice';
+import moment from 'moment';
 
 function BlogHeader({ baseImage, setBaseImage }) {
   const dispatch = useDispatch();
+  const routeParams = useParams();
   const methods = useFormContext();
   const { formState, watch, getValues } = methods;
   const { isValid, dirtyFields } = formState;
@@ -20,14 +22,30 @@ function BlogHeader({ baseImage, setBaseImage }) {
   const theme = useTheme();
   const navigate = useNavigate();
 
+  const { blogId } = routeParams
+
+  console.log(blogId, "blogId")
+
   function handleSaveProduct() {
     const valuesObj = getValues();
     const dataObj = {
       title: valuesObj.title,
-      description: valuesObj.description,
-      image: baseImage
+      content: valuesObj.description,
+      image: baseImage,
+      publishedAt: moment(Date.now()).format()
     }
     dispatch(saveBlog(dataObj));
+  }
+
+  function handleUpdateProduct() {
+    const valuesObj = getValues();
+    const dataObj = {
+      title: valuesObj.title,
+      content: valuesObj.description,
+      image: baseImage,
+      publishedAt: moment(Date.now()).format()
+    }
+    dispatch(updateBlog(dataObj));
   }
 
   function handleRemoveProduct() {
@@ -65,19 +83,11 @@ function BlogHeader({ baseImage, setBaseImage }) {
             initial={{ scale: 0 }}
             animate={{ scale: 1, transition: { delay: 0.3 } }}
           >
-            {images.length > 0 && featuredImageId ? (
-              <img
-                className="w-32 sm:w-48 rounded"
-                src={_.find(images, { id: featuredImageId }).url}
-                alt={name}
-              />
-            ) : (
-              <img
-                className="w-32 sm:w-48 rounded"
-                src="assets/images/apps/ecommerce/product-image-placeholder.png"
-                alt={name}
-              />
-            )}
+            <img
+              className="w-32 sm:w-48 rounded"
+              src="assets/images/apps/ecommerce/product-image-placeholder.png"
+              alt={name}
+            />
           </motion.div>
           <motion.div
             className="flex flex-col items-center sm:items-start min-w-0 mx-8 sm:mx-16"
@@ -107,15 +117,27 @@ function BlogHeader({ baseImage, setBaseImage }) {
         >
           Remove
         </Button>
-        <Button
-          className="whitespace-nowrap mx-4"
-          variant="contained"
-          color="secondary"
-          disabled={_.isEmpty(dirtyFields) || !(isValid && baseImage)}
-          onClick={handleSaveProduct}
-        >
-          Save
-        </Button>
+        {blogId === "new" ?
+          <Button
+            className="whitespace-nowrap mx-4"
+            variant="contained"
+            color="secondary"
+            disabled={_.isEmpty(dirtyFields) || !(isValid && baseImage)}
+            onClick={handleSaveProduct}
+          >
+            Save
+          </Button>
+          :
+          <Button
+            className="whitespace-nowrap mx-4"
+            variant="contained"
+            color="secondary"
+            // disabled={_.isEmpty(dirtyFields) || !(isValid && baseImage)}
+            onClick={handleUpdateProduct}
+          >
+            Update
+          </Button>
+        }
       </motion.div>
     </div>
   );

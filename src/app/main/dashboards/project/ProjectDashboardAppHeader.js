@@ -12,7 +12,6 @@ import { getProjects, selectProjects } from './store/projectsSlice';
 
 function ProjectDashboardAppHeader(props) {
   const dispatch = useDispatch();
-  // const projects = useSelector(selectProjects);
   const user = useSelector(selectUser);
 
   const [selectedProject, setSelectedProject] = useState({
@@ -44,10 +43,6 @@ function ProjectDashboardAppHeader(props) {
       menuEl: null,
     });
   }
-
-  // if (_.isEmpty(projects)) {
-  //   return null;
-  // }
 
   return (
     <div className="flex flex-col w-full px-24 sm:px-32">

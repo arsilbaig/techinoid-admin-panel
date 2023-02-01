@@ -21,7 +21,7 @@ const rows = [
   {
     id: 'image',
     align: 'left',
-    disablePadding: true,
+    disablePadding: false,
     label: '',
     sort: false,
   },
@@ -33,33 +33,19 @@ const rows = [
     sort: true,
   },
   {
-    id: 'categories',
+    id: 'content',
     align: 'left',
     disablePadding: false,
-    label: 'Category',
+    label: 'Content',
     sort: true,
   },
   {
-    id: 'priceTaxIncl',
-    align: 'right',
+    id: 'published',
+    align: 'left',
     disablePadding: false,
-    label: 'Price',
+    label: 'Published',
     sort: true,
-  },
-  {
-    id: 'quantity',
-    align: 'right',
-    disablePadding: false,
-    label: 'Quantity',
-    sort: true,
-  },
-  {
-    id: 'active',
-    align: 'right',
-    disablePadding: false,
-    label: 'Active',
-    sort: true,
-  },
+  }
 ];
 
 function BlogsTableHead(props) {
