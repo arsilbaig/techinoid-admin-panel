@@ -40,11 +40,9 @@ export const saveBlog = createAsyncThunk(
 export const updateBlog = createAsyncThunk(
   'dashboardBlogs/blog/updateBlog',
   async (blogData, { dispatch, getState }) => {
-    debugger
     const { id } = getState().dashboardBlogs.blog;
 
     const response = await axios.put(`http://localhost:3001/blogs/update/${id}`, blogData);
-    debugger
 
     const data = await response.data;
 

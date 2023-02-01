@@ -88,6 +88,7 @@ function Project(props) {
     /**
      * Reset the form on product state changes
      */
+    setBaseImage(product?.image)
     reset(product);
   }, [product, reset]);
 
@@ -137,12 +138,12 @@ function Project(props) {
   /**
    * Wait while product data is loading and form is setted
    */
-  if (
-    _.isEmpty(form) ||
-    (product && routeParams.projectId !== product.id && routeParams.projectId !== 'new')
-  ) {
-    return <FuseLoading />;
-  }
+  // if (
+  //   _.isEmpty(form) ||
+  //   (product && routeParams.projectId !== product.id && routeParams.projectId !== 'new')
+  // ) {
+  //   return <FuseLoading />;
+  // }
 
   return (
     <FormProvider {...methods}>

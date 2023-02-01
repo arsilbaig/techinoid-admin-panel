@@ -22,7 +22,6 @@ import moment from 'moment';
 function BlogsTable(props) {
   const dispatch = useDispatch();
   const blogs = useSelector(selectBlogs);
-  console.log(blogs, "blogs")
   const searchText = useSelector(selectBlogsSearchText);
 
   const [loading, setLoading] = useState(true);
@@ -42,7 +41,7 @@ function BlogsTable(props) {
   useEffect(() => {
     if (searchText.length !== 0) {
       setData(
-        _.filter(blogs, (item) => item.name.toLowerCase().includes(searchText.toLowerCase()))
+        _.filter(blogs, (item) => item.title.toLowerCase().includes(searchText.toLowerCase()))
       );
       setPage(0);
     } else {
@@ -129,8 +128,6 @@ function BlogsTable(props) {
       </motion.div>
     );
   }
-
-  console.log(data, "data")
 
   return (
     <div className="w-full flex flex-col min-h-full">

@@ -24,8 +24,6 @@ function BlogHeader({ baseImage, setBaseImage }) {
 
   const { blogId } = routeParams
 
-  console.log(blogId, "blogId")
-
   function handleSaveProduct() {
     const valuesObj = getValues();
     const dataObj = {

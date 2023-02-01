@@ -40,7 +40,7 @@ function ProjectsTable(props) {
   useEffect(() => {
     if (searchText.length !== 0) {
       setData(
-        _.filter(products, (item) => item.name.toLowerCase().includes(searchText.toLowerCase()))
+        _.filter(products, (item) => item.title.toLowerCase().includes(searchText.toLowerCase()))
       );
       setPage(0);
     } else {
@@ -75,7 +75,7 @@ function ProjectsTable(props) {
   }
 
   function handleClick(item) {
-    props.navigate(`/apps/projects/${item.id}/${item.handle}`);
+    props.navigate(`/apps/projects/${item.id}`);
   }
 
   function handleCheck(event, id) {
@@ -186,56 +186,19 @@ function ProjectsTable(props) {
                       scope="row"
                       padding="none"
                     >
-                      {n.images.length > 0 && n.featuredImageId ? (
-                        <img
-                          className="w-full block rounded"
-                          src={_.find(n.images, { id: n.featuredImageId }).url}
-                          alt={n.name}
-                        />
-                      ) : (
-                        <img
-                          className="w-full block rounded"
-                          src="assets/images/apps/ecommerce/product-image-placeholder.png"
-                          alt={n.name}
-                        />
-                      )}
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16" component="th" scope="row">
-                      {n.name}
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
-                      {n.categories.join(', ')}
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      <span>$</span>
-                      {n.priceTaxIncl}
-                    </TableCell>
-
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      {n.quantity}
-                      <i
-                        className={clsx(
-                          'inline-block w-8 h-8 rounded mx-8',
-                          n.quantity <= 5 && 'bg-red',
-                          n.quantity > 5 && n.quantity <= 25 && 'bg-orange',
-                          n.quantity > 25 && 'bg-green'
-                        )}
+                      <img
+                        className="w-full block rounded"
+                        src={n.image}
+                        alt={n.title}
                       />
                     </TableCell>
 
-                    <TableCell className="p-4 md:p-16" component="th" scope="row" align="right">
-                      {n.active ? (
-                        <FuseSvgIcon className="text-green" size={20}>
-                          heroicons-outline:check-circle
-                        </FuseSvgIcon>
-                      ) : (
-                        <FuseSvgIcon className="text-red" size={20}>
-                          heroicons-outline:minus-circle
-                        </FuseSvgIcon>
-                      )}
+                    <TableCell className="p-4 md:p-16" component="th" scope="row">
+                      {n.title}
+                    </TableCell>
+
+                    <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
+                      {n.description}
                     </TableCell>
                   </TableRow>
                 );

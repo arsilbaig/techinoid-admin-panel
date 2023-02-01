@@ -21,45 +21,24 @@ const rows = [
   {
     id: 'image',
     align: 'left',
-    disablePadding: true,
+    disablePadding: false,
     label: '',
     sort: false,
   },
   {
-    id: 'name',
+    id: 'title',
     align: 'left',
     disablePadding: false,
-    label: 'Name',
+    label: 'Title',
     sort: true,
   },
   {
-    id: 'categories',
+    id: 'description',
     align: 'left',
     disablePadding: false,
-    label: 'Category',
+    label: 'Description',
     sort: true,
-  },
-  {
-    id: 'priceTaxIncl',
-    align: 'right',
-    disablePadding: false,
-    label: 'Price',
-    sort: true,
-  },
-  {
-    id: 'quantity',
-    align: 'right',
-    disablePadding: false,
-    label: 'Quantity',
-    sort: true,
-  },
-  {
-    id: 'active',
-    align: 'right',
-    disablePadding: false,
-    label: 'Active',
-    sort: true,
-  },
+  }
 ];
 
 function ProjectsTableHead(props) {

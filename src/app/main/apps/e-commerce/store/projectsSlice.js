@@ -2,8 +2,8 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import axios from 'axios';
 
 export const getProjects = createAsyncThunk('dashboard/projects/getProjects', async () => {
-  const response = await axios.get('/api/ecommerce/products');
-  const data = await response.data;
+  const response = await axios.get('http://localhost:3001/portfolios');
+  const data = await response.data.portfolios;
 
   return data;
 });

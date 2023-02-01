@@ -3,17 +3,24 @@ import axios from 'axios';
 import FuseUtils from '@fuse/utils';
 
 export const getProject = createAsyncThunk('dashboard/project/getProject', async (projectId) => {
-  const response = await axios.get(`/api/ecommerce/products/${projectId}`);
-  const data = await response.data;
+  const response = await axios.get(`http://localhost:3001/portfolios/${projectId}`);
+  const data = await response.data.portfolios;
 
-  return data === undefined ? null : data;
+  const obj = {
+    id: data.id,
+    title: data.title,
+    description: data.description,
+    image: data.image
+  }
+
+  return obj === undefined ? null : obj;
 });
 
 export const removeProject = createAsyncThunk(
   'dashboard/project/removeProject',
   async (val, { dispatch, getState }) => {
     const { id } = getState().dashboard.project;
-    await axios.delete(`/api/ecommerce/products/${id}`);
+    await axios.delete(`http://localhost:3001/portfolios/delete/${id}`);
     return id;
   }
 );
@@ -21,9 +28,20 @@ export const removeProject = createAsyncThunk(
 export const saveProject = createAsyncThunk(
   'dashboard/project/saveProject',
   async (projectData, { dispatch, getState }) => {
-    const { id } = getState().dashboard;
+    const response = await axios.post('http://localhost:3001/portfolios/create', projectData);
 
-    const response = await axios.put(`/api/ecommerce/products/${id}`, projectData);
+    const data = await response.data;
+
+    return data;
+  }
+);
+
+export const updateProject = createAsyncThunk(
+  'dashboard/project/updateProject',
+  async (projectData, { dispatch, getState }) => {
+    const { id } = getState().dashboard.project;
+
+    const response = await axios.put(`http://localhost:3001/portfolios/update/${id}`, projectData);
 
     const data = await response.data;
 
@@ -66,6 +84,7 @@ const projectSlice = createSlice({
   extraReducers: {
     [getProject.fulfilled]: (state, action) => action.payload,
     [saveProject.fulfilled]: (state, action) => action.payload,
+    [updateProject.fulfilled]: (state, action) => null,
     [removeProject.fulfilled]: (state, action) => null,
   },
 });
