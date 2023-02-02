@@ -7,6 +7,9 @@ const Order = lazy(() => import('./order/Order'));
 const Orders = lazy(() => import('./orders/Orders'));
 const Project = lazy(() => import('./project/Project'));
 const Projects = lazy(() => import('./projects/Projects'));
+const Job = lazy(() => import('./job/Job'));
+const Jobs = lazy(() => import('./jobs/Jobs'));
+const Contacts = lazy(() => import('./allContacts/Contacts'));
 
 const ECommerceAppConfig = {
   settings: {
@@ -28,6 +31,18 @@ const ECommerceAppConfig = {
     {
       path: 'apps/projects/:projectId/*',
       element: <Project />,
+    },
+    {
+      path: 'apps/jobs',
+      element: <Jobs />,
+    },
+    {
+      path: 'apps/jobs/:jobId',
+      element: <Job />,
+    },
+    {
+      path: 'apps/userContacts',
+      element: <Contacts />,
     },
     {
       path: 'apps/e-commerce/orders',

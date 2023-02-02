@@ -4,6 +4,8 @@ const locale = {
   CALENDAR: 'Calendar',
   PROJECTS: 'Projects',
   BLOGS: 'Blogs',
+  JOBS: 'Jobs',
+  CONTACTS: 'Contacts',
   ACADEMY: 'Academy',
   MAIL: 'Mail',
   TASKS: 'Tasks',

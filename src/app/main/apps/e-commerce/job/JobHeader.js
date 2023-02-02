@@ -7,10 +7,9 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import _ from '@lodash';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
-import { removeBlog, saveBlog, updateBlog } from '../store/blogSlice';
-import moment from 'moment';
+import { removeJob, saveJob, updateJob } from '../store/jobSlice';
 
-function BlogHeader({ baseImage, setBaseImage }) {
+function JobHeader() {
   const dispatch = useDispatch();
   const routeParams = useParams();
   const methods = useFormContext();
@@ -22,39 +21,25 @@ function BlogHeader({ baseImage, setBaseImage }) {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const { blogId } = routeParams
+  const { jobId } = routeParams
 
   function handleSaveProduct() {
-    const valuesObj = getValues();
-    const dataObj = {
-      title: valuesObj.title,
-      content: valuesObj.description,
-      image: baseImage,
-      publishedAt: moment(Date.now()).format()
-    }
-    dispatch(saveBlog(dataObj))
+    dispatch(saveJob(getValues()))
       .then(() => {
-        navigate('/apps/blogs');
+        navigate('/apps/jobs');
       });
   }
 
   function handleUpdateProduct() {
-    const valuesObj = getValues();
-    const dataObj = {
-      title: valuesObj.title,
-      content: valuesObj.description,
-      image: baseImage,
-      publishedAt: moment(Date.now()).format()
-    }
-    dispatch(updateBlog(dataObj))
+    dispatch(updateJob(getValues()))
       .then(() => {
-        navigate('/apps/blogs');
+        navigate('/apps/jobs');
       });
   }
 
   function handleRemoveProduct() {
-    dispatch(removeBlog()).then(() => {
-      navigate('/apps/blogs');
+    dispatch(removeJob()).then(() => {
+      navigate('/apps/jobs');
     });
   }
 
@@ -69,7 +54,7 @@ function BlogHeader({ baseImage, setBaseImage }) {
             className="flex items-center sm:mb-12"
             component={Link}
             role="button"
-            to="/apps/blogs"
+            to="/apps/jobs"
             color="inherit"
           >
             <FuseSvgIcon size={20}>
@@ -77,7 +62,7 @@ function BlogHeader({ baseImage, setBaseImage }) {
                 ? 'heroicons-outline:arrow-sm-left'
                 : 'heroicons-outline:arrow-sm-right'}
             </FuseSvgIcon>
-            <span className="flex mx-4 font-medium">Blogs</span>
+            <span className="flex mx-4 font-medium">Jobs</span>
           </Typography>
         </motion.div>
 
@@ -99,10 +84,10 @@ function BlogHeader({ baseImage, setBaseImage }) {
             animate={{ x: 0, transition: { delay: 0.3 } }}
           >
             <Typography className="text-16 sm:text-20 truncate font-semibold">
-              {name || 'New Blog'}
+              {name || 'New Job'}
             </Typography>
             <Typography variant="caption" className="font-medium">
-              Blog Detail
+              Job Detail
             </Typography>
           </motion.div>
         </div>
@@ -121,12 +106,12 @@ function BlogHeader({ baseImage, setBaseImage }) {
         >
           Remove
         </Button>
-        {blogId === "new" ?
+        {jobId === "new" ?
           <Button
             className="whitespace-nowrap mx-4"
             variant="contained"
             color="secondary"
-            disabled={_.isEmpty(dirtyFields) || !(isValid && baseImage)}
+            disabled={_.isEmpty(dirtyFields) || !isValid}
             onClick={handleSaveProduct}
           >
             Save
@@ -147,4 +132,4 @@ function BlogHeader({ baseImage, setBaseImage }) {
   );
 }
 
-export default BlogHeader;
+export default JobHeader;

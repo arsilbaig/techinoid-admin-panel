@@ -3,7 +3,7 @@ import axios from 'axios';
 import FuseUtils from '@fuse/utils';
 
 export const getProject = createAsyncThunk('dashboard/project/getProject', async (projectId) => {
-  const response = await axios.get(`http://localhost:3001/portfolios/${projectId}`);
+  const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/portfolios/${projectId}`);
   const data = await response.data.portfolios;
 
   const obj = {
@@ -20,7 +20,7 @@ export const removeProject = createAsyncThunk(
   'dashboard/project/removeProject',
   async (val, { dispatch, getState }) => {
     const { id } = getState().dashboard.project;
-    await axios.delete(`http://localhost:3001/portfolios/delete/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/portfolios/delete/${id}`);
     return id;
   }
 );
@@ -28,7 +28,7 @@ export const removeProject = createAsyncThunk(
 export const saveProject = createAsyncThunk(
   'dashboard/project/saveProject',
   async (projectData, { dispatch, getState }) => {
-    const response = await axios.post('http://localhost:3001/portfolios/create', projectData);
+    const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/portfolios/create`, projectData);
 
     const data = await response.data;
 
@@ -41,7 +41,7 @@ export const updateProject = createAsyncThunk(
   async (projectData, { dispatch, getState }) => {
     const { id } = getState().dashboard.project;
 
-    const response = await axios.put(`http://localhost:3001/portfolios/update/${id}`, projectData);
+    const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/portfolios/update/${id}`, projectData);
 
     const data = await response.data;
 

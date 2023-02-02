@@ -3,7 +3,7 @@ import axios from 'axios';
 import FuseUtils from '@fuse/utils';
 
 export const getBlog = createAsyncThunk('dashboardBlogs/blog/getBlog', async (blogId) => {
-  const response = await axios.get(`http://localhost:3001/blogs/${blogId}`);
+  const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/blogs/${blogId}`);
   const data = await response.data.blogs;
 
   const obj = {
@@ -20,7 +20,7 @@ export const removeBlog = createAsyncThunk(
   'dashboardBlogs/blog/removeBlog',
   async (val, { dispatch, getState }) => {
     const { id } = getState().dashboardBlogs.blog;
-    await axios.delete(`http://localhost:3001/blogs/delete/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/blogs/delete/${id}`);
     return id;
   }
 );
@@ -29,7 +29,7 @@ export const saveBlog = createAsyncThunk(
   'dashboardBlogs/blog/saveBlog',
   async (blogData, { dispatch, getState }) => {
 
-    const response = await axios.post('http://localhost:3001/blogs/create', blogData);
+    const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/blogs/create`, blogData);
 
     const data = await response.data;
 
@@ -42,7 +42,7 @@ export const updateBlog = createAsyncThunk(
   async (blogData, { dispatch, getState }) => {
     const { id } = getState().dashboardBlogs.blog;
 
-    const response = await axios.put(`http://localhost:3001/blogs/update/${id}`, blogData);
+    const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/blogs/update/${id}`, blogData);
 
     const data = await response.data;
 

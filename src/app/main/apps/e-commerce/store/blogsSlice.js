@@ -2,7 +2,7 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import axios from 'axios';
 
 export const getBlogs = createAsyncThunk('dashboardBlogs/blogs/getBlogs', async () => {
-  const response = await axios.get('http://localhost:3001/blogs');
+  const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/blogs`);
   const data = await response.data.blogs;
 
   return data;

@@ -67,7 +67,7 @@ class JwtService extends FuseUtils.EventEmitter {
       password: password
     }
     return new Promise((resolve, reject) => {
-      axios.post('http://localhost:3001/login', data)
+      axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, data)
         .then((response) => {
           let arr = []
           arr.push(response.data.role)
@@ -82,14 +82,16 @@ class JwtService extends FuseUtils.EventEmitter {
           } else {
             reject(response.data.error);
           }
-        });
+        }).catch((err) => {
+          reject(err.response.data.error);
+        })
     });
   };
 
   signInWithToken = () => {
     return new Promise((resolve, reject) => {
       axios
-        .post('http://localhost:3001/refreshToken', {
+        .post(`${process.env.REACT_APP_API_BASE_URL}/refreshToken`, {
           headers: {
             access_token: this.getAccessToken(),
           },
