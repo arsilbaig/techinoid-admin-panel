@@ -9,7 +9,7 @@ import _ from '@lodash';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { removeJob, saveJob, updateJob } from '../store/jobSlice';
 
-function JobHeader() {
+function JobHeader(props) {
   const dispatch = useDispatch();
   const routeParams = useParams();
   const methods = useFormContext();
@@ -121,7 +121,7 @@ function JobHeader() {
             className="whitespace-nowrap mx-4"
             variant="contained"
             color="secondary"
-            // disabled={_.isEmpty(dirtyFields) || !(isValid && baseImage)}
+            disabled={_.isEmpty(dirtyFields) || !isValid}
             onClick={handleUpdateProduct}
           >
             Update
