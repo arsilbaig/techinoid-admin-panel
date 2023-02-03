@@ -12,24 +12,20 @@ function SummaryWidget() {
 
   return (
     <Paper className="flex flex-col flex-auto shadow rounded-2xl overflow-hidden">
-      <div className="flex items-center justify-between px-8 pt-12">
+      <div className="flex items-center justify-start px-8 pt-12">
         <Typography
           className="px-16 text-lg font-medium tracking-tight leading-6 truncate"
           color="text.secondary"
         >
-          Total Tasks
+          Total Jobs
         </Typography>
-
-        <IconButton aria-label="more" size="large">
-          <FuseSvgIcon>heroicons-outline:dots-vertical</FuseSvgIcon>
-        </IconButton>
       </div>
       <div className="text-center mt-8">
         <Typography className="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
           25
         </Typography>
         <Typography className="text-lg font-medium text-blue-600 dark:text-blue-500">
-          Due Tasks
+          Jobs
         </Typography>
       </div>
       <Typography
