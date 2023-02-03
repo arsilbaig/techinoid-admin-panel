@@ -11,7 +11,13 @@ export const getProjects = createAsyncThunk('dashboard/projects/getProjects', as
 export const removeProjects = createAsyncThunk(
   'dashboard/projects',
   async (projectIds, { dispatch, getState }) => {
-    await axios.delete('/api/ecommerce/products', { data: projectIds });
+    const idArr = projectIds.map((d) => d.toString())
+
+    await axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_API_BASE_URL}/portfolios/delete`,
+      data: { ids: idArr }
+    });
 
     return projectIds;
   }

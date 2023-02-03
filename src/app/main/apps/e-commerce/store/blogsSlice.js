@@ -11,7 +11,13 @@ export const getBlogs = createAsyncThunk('dashboardBlogs/blogs/getBlogs', async 
 export const removeBlogs = createAsyncThunk(
   'dashboardBlogs/blogs',
   async (blogIds, { dispatch, getState }) => {
-    await axios.delete('/api/ecommerce/products', { data: blogIds });
+    const idArr = blogIds.map((d) => d.toString())
+
+    await axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_API_BASE_URL}/blogs/delete`,
+      data: { ids: idArr }
+    });
 
     return blogIds;
   }

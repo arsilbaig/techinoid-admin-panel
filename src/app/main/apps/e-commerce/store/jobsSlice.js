@@ -11,7 +11,13 @@ export const getJobs = createAsyncThunk('dashboardJobs/jobs/getJobs', async () =
 export const removeJobs = createAsyncThunk(
   'dashboardJobs/jobs',
   async (jobIds, { dispatch, getState }) => {
-    await axios.delete('/api/ecommerce/products', { data: jobIds });
+    const idArr = jobIds.map((d) => d.toString())
+
+    await axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_API_BASE_URL}/jobpost/delete`,
+      data: { ids: idArr }
+    });
 
     return jobIds;
   }
