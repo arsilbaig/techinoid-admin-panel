@@ -152,7 +152,7 @@ function Blog(props) {
         content={
           <>
             <div className="p-16 sm:p-24 max-w-3xl">
-              <BasicInfoTab baseImage={baseImage} setBaseImage={setBaseImage} />
+              <BasicInfoTab baseImage={baseImage} setBaseImage={setBaseImage} product={product} />
             </div>
           </>
         }

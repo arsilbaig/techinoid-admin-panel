@@ -199,7 +199,7 @@ function BlogsTable(props) {
                     </TableCell>
 
                     <TableCell className="p-4 md:p-16" component="th" scope="row">
-                      <Typography className=''>
+                      <Typography sx={{ height: '20px !important', overflow: 'hidden' }} className='max-w-360'>
                         {n.content}
                       </Typography>
                     </TableCell>

@@ -3,8 +3,9 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { Controller, useFormContext } from 'react-hook-form';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { lighten } from '@mui/material/styles';
+import WYSIWYGEditor from 'app/shared-components/WYSIWYGEditor';
 
-function BasicInfoTab({ baseImage, setBaseImage }) {
+function BasicInfoTab({ baseImage, setBaseImage, product }) {
   const methods = useFormContext();
   const { control, formState } = methods;
   const { errors } = formState;
@@ -88,7 +89,6 @@ function BasicInfoTab({ baseImage, setBaseImage }) {
             error={!!errors.title}
             required
             helperText={errors?.title?.message}
-            autoFocus
             id="title"
             variant="outlined"
             fullWidth
@@ -100,23 +100,10 @@ function BasicInfoTab({ baseImage, setBaseImage }) {
         Description<span style={{ color: "red" }}>*</span>
       </Typography>
       <Controller
+        className="mt-8 mb-16"
+        render={({ field }) => <WYSIWYGEditor {...field} product={product?.description} />}
         name="description"
         control={control}
-        render={({ field }) => (
-          <TextField
-            {...field}
-            className="mt-8 mb-16"
-            error={!!errors.description}
-            required
-            helperText={errors?.description?.message}
-            id="description"
-            type="text"
-            multiline
-            rows={5}
-            variant="outlined"
-            fullWidth
-          />
-        )}
       />
     </div>
   );

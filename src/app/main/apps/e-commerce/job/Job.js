@@ -181,7 +181,7 @@ function Job(props) {
         content={
           <>
             <div className="p-16 sm:p-24">
-              <BasicInfoTab />
+              <BasicInfoTab product={product} />
             </div>
           </>
         }

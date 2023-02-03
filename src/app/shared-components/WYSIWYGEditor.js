@@ -1,6 +1,6 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { convertToRaw, EditorState } from 'draft-js';
+import { convertToRaw, EditorState, ContentState, convertFromHTML } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -22,6 +22,12 @@ const Root = styled('div')({
 
 const WYSIWYGEditor = forwardRef((props, ref) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  useEffect(() => {
+    if (props?.product) {
+      setEditorState(EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(props?.product))))
+    }
+  }, [props?.product])
 
   function onEditorStateChange(_editorState) {
     setEditorState(_editorState);

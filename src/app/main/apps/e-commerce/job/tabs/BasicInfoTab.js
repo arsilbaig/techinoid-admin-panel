@@ -2,8 +2,9 @@ import { TextField, Typography, Box } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
+import WYSIWYGEditor from 'app/shared-components/WYSIWYGEditor';
 
-function BasicInfoTab(props) {
+function BasicInfoTab({ product }) {
   const methods = useFormContext();
   const { control, formState } = methods;
   const { errors } = formState;
@@ -25,7 +26,6 @@ function BasicInfoTab(props) {
                 error={!!errors.title}
                 required
                 helperText={errors?.title?.message}
-                autoFocus
                 id="title"
                 variant="outlined"
                 fullWidth
@@ -47,7 +47,6 @@ function BasicInfoTab(props) {
                 error={!!errors.job_category}
                 required
                 helperText={errors?.job_category?.message}
-                autoFocus
                 id="job_category"
                 variant="outlined"
                 fullWidth
@@ -71,7 +70,6 @@ function BasicInfoTab(props) {
                 error={!!errors.job_type}
                 required
                 helperText={errors?.job_type?.message}
-                autoFocus
                 id="job_type"
                 variant="outlined"
                 fullWidth
@@ -93,7 +91,6 @@ function BasicInfoTab(props) {
                 error={!!errors.department}
                 required
                 helperText={errors?.department?.message}
-                autoFocus
                 id="department"
                 variant="outlined"
                 fullWidth
@@ -117,7 +114,6 @@ function BasicInfoTab(props) {
                 error={!!errors.location}
                 required
                 helperText={errors?.location?.message}
-                autoFocus
                 id="location"
                 variant="outlined"
                 fullWidth
@@ -139,7 +135,6 @@ function BasicInfoTab(props) {
                 error={!!errors.total_positions}
                 required
                 helperText={errors?.total_positions?.message}
-                autoFocus
                 id="total_positions"
                 variant="outlined"
                 fullWidth
@@ -163,7 +158,6 @@ function BasicInfoTab(props) {
                 error={!!errors.experience}
                 required
                 helperText={errors?.experience?.message}
-                autoFocus
                 id="experience"
                 variant="outlined"
                 fullWidth
@@ -185,7 +179,6 @@ function BasicInfoTab(props) {
                 error={!!errors.offer}
                 required
                 helperText={errors?.offer?.message}
-                autoFocus
                 id="offer"
                 variant="outlined"
                 fullWidth
@@ -225,45 +218,20 @@ function BasicInfoTab(props) {
         Description<span style={{ color: "red" }}>*</span>
       </Typography>
       <Controller
+        className="mt-8 mb-16"
+        render={({ field }) => <WYSIWYGEditor {...field} product={product?.description} />}
         name="description"
         control={control}
-        render={({ field }) => (
-          <TextField
-            {...field}
-            className="mt-6 mb-8"
-            error={!!errors.description}
-            required
-            helperText={errors?.description?.message}
-            id="description"
-            type="text"
-            multiline
-            rows={5}
-            variant="outlined"
-            fullWidth
-          />
-        )}
       />
+
       <Typography className="text-grey-600 font-medium text-md mt-10">
         Requirements<span style={{ color: "red" }}>*</span>
       </Typography>
       <Controller
+        className="mt-8 mb-16"
+        render={({ field }) => <WYSIWYGEditor {...field} product={product?.requirements} />}
         name="requirements"
         control={control}
-        render={({ field }) => (
-          <TextField
-            {...field}
-            className="mt-6 mb-8"
-            error={!!errors.requirements}
-            required
-            helperText={errors?.requirements?.message}
-            id="requirements"
-            type="text"
-            multiline
-            rows={5}
-            variant="outlined"
-            fullWidth
-          />
-        )}
       />
     </div>
   );

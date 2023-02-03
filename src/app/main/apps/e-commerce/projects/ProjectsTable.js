@@ -198,7 +198,9 @@ function ProjectsTable(props) {
                     </TableCell>
 
                     <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
-                      {n.description}
+                      <Typography sx={{ height: '20px !important', overflow: 'hidden' }} className='max-w-480'>
+                        {n.description}
+                      </Typography>
                     </TableCell>
                   </TableRow>
                 );
