@@ -11,6 +11,7 @@ const locale = {
   TASKS: 'Tasks',
   FILE_MANAGER: 'File Manager',
   CONTACTS: 'Contacts',
+  APPLICANTS: 'Applicants',
   CHAT: 'Chat',
   SCRUMBOARD: 'Scrumboard',
   NOTES: 'Notes',
