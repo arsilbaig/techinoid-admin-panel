@@ -70,7 +70,7 @@ const navigationConfig = [
         id: 'apps.jobs',
         title: 'Jobs',
         type: 'collapse',
-        icon: 'heroicons-outline:document',
+        icon: 'heroicons-outline:briefcase',
         translate: 'JOBS',
         children: [
           {
@@ -86,7 +86,7 @@ const navigationConfig = [
         id: 'apps.contacts',
         title: 'Contacts',
         type: 'collapse',
-        icon: 'heroicons-outline:user',
+        icon: 'heroicons-outline:link',
         translate: 'CONTACTS',
         children: [
           {
@@ -94,6 +94,22 @@ const navigationConfig = [
             title: 'All Contacts',
             type: 'item',
             url: 'apps/userContacts',
+            end: true,
+          }
+        ]
+      },
+      {
+        id: 'apps.applicants',
+        title: 'Applicants',
+        type: 'collapse',
+        icon: 'heroicons-outline:user-group',
+        translate: 'APPLICANTS',
+        children: [
+          {
+            id: 'applicants',
+            title: 'All Applicants',
+            type: 'item',
+            url: 'apps/applicants',
             end: true,
           }
         ]
