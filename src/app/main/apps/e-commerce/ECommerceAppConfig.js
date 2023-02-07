@@ -10,6 +10,7 @@ const Projects = lazy(() => import('./projects/Projects'));
 const Job = lazy(() => import('./job/Job'));
 const Jobs = lazy(() => import('./jobs/Jobs'));
 const Contacts = lazy(() => import('./allContacts/Contacts'));
+const Applicants = lazy(() => import('./applicants/Applications'));
 
 const ECommerceAppConfig = {
   settings: {
@@ -43,6 +44,10 @@ const ECommerceAppConfig = {
     {
       path: 'apps/userContacts',
       element: <Contacts />,
+    },
+    {
+      path: 'apps/applicants',
+      element: <Applicants />,
     },
     {
       path: 'apps/e-commerce/orders',
