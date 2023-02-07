@@ -198,9 +198,9 @@ function BlogsTable(props) {
                       {n.title}
                     </TableCell>
 
-                    <TableCell className="p-4 md:p-16" component="th" scope="row">
-                      <Typography sx={{ height: '20px !important', overflow: 'hidden' }} className='max-w-360'>
-                        {n.content}
+                    <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
+                      <Typography sx={{ height: '20px !important', overflow: 'hidden' }} className='max-w-360 text-ellipsis overflow-hidden'>
+                        {n.content.replace(/<[^>]+>/g, '')}
                       </Typography>
                     </TableCell>
 

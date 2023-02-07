@@ -198,8 +198,8 @@ function ProjectsTable(props) {
                     </TableCell>
 
                     <TableCell className="p-4 md:p-16 truncate" component="th" scope="row">
-                      <Typography sx={{ height: '20px !important', overflow: 'hidden' }} className='max-w-480'>
-                        {n.description}
+                      <Typography sx={{ height: '20px !important', overflow: 'hidden' }} className='max-w-480 text-ellipsis overflow-hidden'>
+                        {n.description.replace(/<[^>]+>/g, '')}
                       </Typography>
                     </TableCell>
                   </TableRow>
