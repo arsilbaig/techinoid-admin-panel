@@ -18,6 +18,8 @@ import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { getApplications, selectApplications, selectApplicationsSearchText } from '../store/applicantsSlice';
 import ApplicationsTableHead from './ApplicationsTableHead';
 import moment from 'moment';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import { IconButton } from '@mui/material';
 
 function ApplicationsTable(props) {
   const dispatch = useDispatch();
@@ -126,6 +128,21 @@ function ApplicationsTable(props) {
     );
   }
 
+  const downloadFile = (url, id) => {
+    // using Java Script method to get PDF file
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/download/${id}/`).then(response => {
+      response.blob().then(blob => {
+        // Creating new object of PDF file
+        const fileURL = window.URL.createObjectURL(blob);
+        // Setting various property values
+        let alink = document.createElement('a');
+        alink.href = fileURL;
+        alink.download = url;
+        alink.click();
+      })
+    })
+  }
+
   return (
     <div className="w-full flex flex-col min-h-full">
       <FuseScrollbars className="grow overflow-x-auto">
@@ -161,7 +178,7 @@ function ApplicationsTable(props) {
                 const isSelected = selected.indexOf(n.id) !== -1;
                 return (
                   <TableRow
-                    className="h-72 cursor-pointer"
+                    className="h-72"
                     hover
                     role="checkbox"
                     aria-checked={isSelected}
@@ -178,7 +195,7 @@ function ApplicationsTable(props) {
                     </TableCell>
 
                     <TableCell className="p-4 md:p-16" component="th" scope="row">
-                      {n.jobPostid}
+                      {n.jobPost}
                     </TableCell>
 
                     <TableCell className="p-4 md:p-16" component="th" scope="row">
@@ -193,6 +210,14 @@ function ApplicationsTable(props) {
 
                     <TableCell className="p-4 md:p-16" component="th" scope="row">
                       {n.phone}
+                    </TableCell>
+
+                    <TableCell className="p-4 md:p-16" component="th" scope="row">
+                      {n.resume}
+                    </TableCell>
+
+                    <TableCell className="p-4 md:p-16" component="th" scope="row" align='right'>
+                      <IconButton className="cursor-pointer" onClick={() => { downloadFile(n.resume, n.id) }}><CloudDownloadIcon color='secondary' /></IconButton>
                     </TableCell>
                   </TableRow>
                 );

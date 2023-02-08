@@ -19,10 +19,10 @@ import { removeApplications } from '../store/applicantsSlice';
 
 const rows = [
   {
-    id: 'jobId',
+    id: 'jobTitle',
     align: 'left',
     disablePadding: false,
-    label: 'Job Id',
+    label: 'Job Title',
     sort: true,
   },
   {
@@ -44,6 +44,20 @@ const rows = [
     align: 'left',
     disablePadding: false,
     label: 'Phone Number',
+    sort: true,
+  },
+  {
+    id: 'resume',
+    align: 'left',
+    disablePadding: false,
+    label: 'Resume',
+    sort: true,
+  },
+  {
+    id: 'download',
+    align: 'left',
+    disablePadding: false,
+    label: '',
     sort: true,
   }
 ];
