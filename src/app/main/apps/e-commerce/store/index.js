@@ -9,6 +9,7 @@ import job from './jobSlice';
 import jobs from './jobsSlice';
 import userContacts from './userContactsSlice';
 import applicants from './applicantsSlice';
+import subscribers from './subscribersSlice';
 
 const reducer = combineReducers({
   blogs,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   jobs,
   userContacts,
   applicants,
+  subscribers
 
 });
 
