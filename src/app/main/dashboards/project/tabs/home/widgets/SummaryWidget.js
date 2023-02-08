@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { selectWidgets } from '../../../store/widgetsSlice';
 
-function SummaryWidget() {
+function SummaryWidget({ jobs }) {
 
   return (
     <Paper className="flex flex-col flex-auto shadow rounded-2xl overflow-hidden">
@@ -20,21 +20,14 @@ function SummaryWidget() {
           Total Jobs
         </Typography>
       </div>
-      <div className="text-center mt-8">
+      <div className="text-center mt-8 pb-40 pt-20">
         <Typography className="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
-          25
+          {jobs}
         </Typography>
         <Typography className="text-lg font-medium text-blue-600 dark:text-blue-500">
           Jobs
         </Typography>
       </div>
-      <Typography
-        className="flex items-baseline justify-center w-full mt-20 mb-24"
-        color="text.secondary"
-      >
-        <span className="truncate">Completed</span>:
-        <b className="px-8">7</b>
-      </Typography>
     </Paper>
   );
 }

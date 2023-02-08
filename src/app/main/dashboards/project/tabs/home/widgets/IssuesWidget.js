@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import FuseSvgIcon from '@fuse/core/FuseSvgIcon';
 import { selectWidgets } from '../../../store/widgetsSlice';
 
-function IssuesWidget() {
+function IssuesWidget({ blogs }) {
 
   return (
     <Paper className="flex flex-col flex-auto shadow rounded-2xl overflow-hidden">
@@ -18,19 +18,12 @@ function IssuesWidget() {
           Blogs
         </Typography>
       </div>
-      <div className="text-center mt-8">
+      <div className="text-center mt-8 pb-40 pt-20">
         <Typography className="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">
-          32
+          {blogs}
         </Typography>
         <Typography className="text-lg font-medium text-amber-600">Blogs</Typography>
       </div>
-      <Typography
-        className="flex items-baseline justify-center w-full mt-20 mb-24"
-        color="text.secondary"
-      >
-        <span className="truncate">Closed today</span>:
-        <b className="px-8">0</b>
-      </Typography>
     </Paper>
   );
 }

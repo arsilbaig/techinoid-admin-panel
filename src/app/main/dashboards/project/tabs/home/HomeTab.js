@@ -3,8 +3,21 @@ import SummaryWidget from './widgets/SummaryWidget';
 import OverdueWidget from './widgets/OverdueWidget';
 import IssuesWidget from './widgets/IssuesWidget';
 import FeaturesWidget from './widgets/FeaturesWidget';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function HomeTab() {
+  const [allData, setAllData] = useState({});
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/dashboard`)
+      .then((res) => {
+        setAllData(res.data.data)
+      }).catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   const container = {
     show: {
       transition: {
@@ -26,16 +39,16 @@ function HomeTab() {
       animate="show"
     >
       <motion.div variants={item}>
-        <SummaryWidget />
+        <SummaryWidget jobs={allData.jobPostCount} />
       </motion.div>
       <motion.div variants={item}>
-        <OverdueWidget />
+        <OverdueWidget projects={allData.portfolioCount} />
       </motion.div>
       <motion.div variants={item}>
-        <IssuesWidget />
+        <IssuesWidget blogs={allData.blogCount} />
       </motion.div>
       <motion.div variants={item}>
-        <FeaturesWidget />
+        <FeaturesWidget applicants={allData.jobApplyCount} />
       </motion.div>
     </motion.div>
   );
