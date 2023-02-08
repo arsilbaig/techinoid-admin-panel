@@ -35,20 +35,20 @@ const navigationConfig = [
     translate: 'APPLICATIONS',
     children: [
       // {
-        // id: 'apps.projects',
-        // title: 'Projects',
-        // type: 'collapse',
-        // icon: 'heroicons-outline:clipboard-check',
-        // translate: 'PROJECTS',
-        // children: [
-          {
-            id: 'projects',
-            title: 'Projects',
-            type: 'item',
-            icon: 'heroicons-outline:clipboard-check',
-            url: 'apps/projects',
-            end: true,
-          },
+      // id: 'apps.projects',
+      // title: 'Projects',
+      // type: 'collapse',
+      // icon: 'heroicons-outline:clipboard-check',
+      // translate: 'PROJECTS',
+      // children: [
+      {
+        id: 'projects',
+        title: 'Projects',
+        type: 'item',
+        icon: 'heroicons-outline:clipboard-check',
+        url: 'apps/projects',
+        end: true,
+      },
       //   ]
       // },
       // {
@@ -58,14 +58,14 @@ const navigationConfig = [
       //   icon: 'heroicons-outline:pencil',
       //   translate: 'BLOGS',
       //   children: [
-          {
-            id: 'blogs',
-            title: 'Blogs',
-            type: 'item',
-            icon: 'heroicons-outline:pencil',
-            url: 'apps/blogs',
-            end: true,
-          },
+      {
+        id: 'blogs',
+        title: 'Blogs',
+        type: 'item',
+        icon: 'heroicons-outline:pencil',
+        url: 'apps/blogs',
+        end: true,
+      },
       //   ]
       // },
       // {
@@ -75,14 +75,14 @@ const navigationConfig = [
       //   icon: 'heroicons-outline:briefcase',
       //   translate: 'JOBS',
       //   children: [
-          {
-            id: 'jobs',
-            title: 'Jobs',
-            type: 'item',
-            icon: 'heroicons-outline:briefcase',
-            url: 'apps/jobs',
-            end: true,
-          },
+      {
+        id: 'jobs',
+        title: 'Jobs',
+        type: 'item',
+        icon: 'heroicons-outline:briefcase',
+        url: 'apps/jobs',
+        end: true,
+      },
       //   ]
       // },
       // {
@@ -92,14 +92,14 @@ const navigationConfig = [
       //   icon: 'heroicons-outline:link',
       //   translate: 'CONTACTS',
       //   children: [
-          {
-            id: 'contacts',
-            title: 'Contacts',
-            type: 'item',
-            icon: 'heroicons-outline:link',
-            url: 'apps/userContacts',
-            end: true,
-          },
+      {
+        id: 'contacts',
+        title: 'Contacts',
+        type: 'item',
+        icon: 'heroicons-outline:link',
+        url: 'apps/userContacts',
+        end: true,
+      },
       //   ]
       // },
       // {
@@ -109,14 +109,22 @@ const navigationConfig = [
       //   icon: 'heroicons-outline:user-group',
       //   translate: 'APPLICANTS',
       //   children: [
-          {
-            id: 'applicants',
-            title: 'Applicants',
-            type: 'item',
-            icon: 'heroicons-outline:user-group',
-            url: 'apps/applicants',
-            end: true,
-          }
+      {
+        id: 'applicants',
+        title: 'Applicants',
+        type: 'item',
+        icon: 'heroicons-outline:user-group',
+        url: 'apps/applicants',
+        end: true,
+      },
+      {
+        id: 'subscribers',
+        title: 'Subscribers',
+        type: 'item',
+        icon: 'heroicons-outline:chat',
+        url: 'apps/subscribers',
+        end: true,
+      }
       //   ]
       // }
     ],
